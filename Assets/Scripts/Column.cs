@@ -10,5 +10,9 @@ public class Column : MonoBehaviour
         {
             GameControl.instance.BirdScored();
         }
+        if (other.GetComponent<Bird2>() != null)
+        {
+            GameControl.instance.Bird2Scored();
+        }
     }
 }
