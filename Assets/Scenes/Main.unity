@@ -557,6 +557,9 @@ MonoBehaviour:
   gameOver: 0
   scrollSpeed: -1.5
   scoreText: {fileID: 1023314491}
+  scoreText2: {fileID: 0}
+  isTwoBirdGame: 0
+  birdsDead: 0
 --- !u!4 &532276952
 Transform:
   m_ObjectHideFlags: 0

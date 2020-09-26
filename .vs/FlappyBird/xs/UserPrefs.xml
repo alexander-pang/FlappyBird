@@ -1,11 +1,14 @@
 ﻿<Properties StartupConfiguration="{E3EF6E53-88BE-20EB-65C7-C65330B49779}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ScrollingObject.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameControl.cs">
     <Files>
-      <File FileName="Assets/Scripts/Bird.cs" Line="37" Column="38" />
+      <File FileName="Assets/Scripts/Bird.cs" Line="12" Column="31" />
       <File FileName="Assets/Scripts/ScrollingObject.cs" Line="17" Column="18" />
-      <File FileName="Assets/Scripts/ColumnPool.cs" />
-      <File FileName="Assets/Scripts/GameControl.cs" />
-      <File FileName="Assets/MainMenu.cs" Line="15" Column="28" />
+      <File FileName="Assets/Scripts/ColumnPool.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GameControl.cs" Line="21" Column="31" />
+      <File FileName="Assets/MainMenu.cs" Line="11" Column="28" />
+      <File FileName="Assets/Bird2.cs" Line="9" Column="12" />
+      <File FileName="Assets/Scripts/Column.cs" Line="15" Column="48" />
+      <File FileName="Assets/Scripts/RepeatingBackground.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -13,7 +16,7 @@
           <Node name="FlappyBird" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="ScrollingObject.cs" selected="True" />
+                <Node name="GameControl.cs" selected="True" />
               </Node>
             </Node>
           </Node>

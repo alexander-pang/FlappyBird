@@ -9,6 +9,7 @@ public class Bird : MonoBehaviour
     private bool isDead = false;
     private Rigidbody2D rb2d;
     private Animator anim;
+    private int timesDied = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -34,9 +35,30 @@ public class Bird : MonoBehaviour
 
     void OnCollisionEnter2D()
     {
-        rb2d.velocity = Vector2.zero;
-        isDead = true;
-        anim.SetTrigger("Die");
-        GameControl.instance.BirdDied();
+        if (isDead == false)
+        {
+            timesDied++;
+            if (GameControl.instance.isTwoBirdGame)
+            {
+                if(timesDied > 1)
+                {
+                    return;
+                }
+                else
+                {
+                    rb2d.velocity = Vector2.zero;
+                    isDead = true;
+                    anim.SetTrigger("Die");
+                    GameControl.instance.OneBirdDied();
+                }
+            }
+            else
+            {
+                rb2d.velocity = Vector2.zero;
+                isDead = true;
+                anim.SetTrigger("Die");
+                GameControl.instance.BirdDied();
+            }
+        }
     }
 }

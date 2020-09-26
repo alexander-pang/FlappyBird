@@ -14,9 +14,20 @@ public class GameControl : MonoBehaviour
 
     private int score = 0;
 
+    //Bird 2 stuff
+    public Text scoreText2;
+    public bool isTwoBirdGame = false;
+    private int scoreTwo = 0;
+    public int birdsDead  = 0;
+
+
     // Start is called before the first frame update
     void Awake()
     {
+        if(MainMenu.isTwoPlayerGame == true)
+        {
+            isTwoBirdGame = true;
+        }
         if (instance == null)
         {
             instance = this;
@@ -46,10 +57,28 @@ public class GameControl : MonoBehaviour
         scoreText.text = "Score: " + score.ToString();
     }
 
+    public void Bird2Scored()
+    {
+        if (gameOver)
+        {
+            return;
+        }
+        scoreTwo++;
+        scoreText2.text = "Blue Score: " + score.ToString();
+    }
+
     public void BirdDied()
     {
         gameOverText.SetActive(true);
         gameOver = true;
-
+    }
+    public void OneBirdDied()
+    {
+        birdsDead++;
+        if (birdsDead == 2)
+        {
+            gameOverText.SetActive(true);
+            gameOver = true;
+        }
     }
 }
