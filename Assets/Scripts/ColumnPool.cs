@@ -31,6 +31,8 @@ public class ColumnPool : MonoBehaviour
     void Update()
     {
         timeSinceLastSpawned += Time.deltaTime;
+
+        UnityEngine.Debug.Log(spawnRate);
         if(GameControl.instance.gameOver == false && timeSinceLastSpawned >= spawnRate)
         {
             timeSinceLastSpawned = 0;

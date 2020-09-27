@@ -7,10 +7,11 @@ public class GameControl : MonoBehaviour
     public static GameControl instance;
     public GameObject gameOverText;
     public bool gameOver = false;
-    public float scrollSpeed = -1.5f;
+    public float scrollSpeed;
     public Text scoreText;
 
     public GameObject highScoreUI;
+    public float speedVariance = 1;
 
     public int score = 0;
 
@@ -26,6 +27,8 @@ public class GameControl : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        scrollSpeed = -1.5f;
+        speedVariance = 1f;
         if (MainMenu.isTwoPlayerGame == true)
         {
             isTwoBirdGame = true;
@@ -43,7 +46,7 @@ public class GameControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (HighScoreManager.instance.isAHighScore(score) && settingHighScore == false && gameOver)
+        if (HighScoreManager.instance.isAHighScore(score) && settingHighScore == false && gameOver && SceneManager.GetActiveScene().name == "2Birds")
         {
             highScoreUI.SetActive(true);
             settingHighScore = true;
@@ -62,6 +65,12 @@ public class GameControl : MonoBehaviour
             return;
         }
         score++;
+        if (speedVariance < 2.5f)
+        {
+            speedVariance = speedVariance + .25f;
+            FindObjectOfType<ColumnPool>().spawnRate = FindObjectOfType<ColumnPool>().spawnRate - .4f;
+        }
+        
         scoreText.text = "Score: " + score.ToString();
     }
 
@@ -71,6 +80,12 @@ public class GameControl : MonoBehaviour
         {
             return;
         }
+        if(birdsDead == 1 && speedVariance < 2.5f)
+        {
+            speedVariance = speedVariance + .25f;
+            FindObjectOfType<ColumnPool>().spawnRate = FindObjectOfType<ColumnPool>().spawnRate - .4f;
+        }
+
         scoreTwo++;
         scoreText2.text = "Blue Score: " + scoreTwo.ToString();
     }
@@ -88,10 +103,5 @@ public class GameControl : MonoBehaviour
             gameOverText.SetActive(true);
             gameOver = true;
         }
-    }
-
-    public void backButton()
-    {
-        SceneManager.LoadScene("Menu");
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class HighScoreManager : MonoBehaviour
@@ -8,6 +9,7 @@ public class HighScoreManager : MonoBehaviour
     public static HighScoreManager instance;
     public const int leaderboardLength = 5;
     public Text highScoreTextEntry;
+    public GameObject entryUI;
 
     void Start()
     {
@@ -93,5 +95,12 @@ public class HighScoreManager : MonoBehaviour
     public void addHighScore()
     {
         SaveHighScore(highScoreTextEntry.text, GameControl.instance.score);
+        entryUI.SetActive(false);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void backButton()
+    {
+        SceneManager.LoadScene("Menu");
     }
 }
