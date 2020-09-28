@@ -29,8 +29,18 @@ public class GameControl : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        if (PlayerPrefs.GetInt("IsEasyMode", 0) == 1)
+        {
+            speedVariance = .75f;
+            FindObjectOfType<ColumnPool>().spawnRate = FindObjectOfType<ColumnPool>().spawnRate + .4f;
+            FindObjectOfType<Bird>().GetComponent<Rigidbody2D>().gravityScale = .4f;
+            FindObjectOfType<Bird>().upForce = 125;
+        }
+        else
+        {
+            speedVariance = 1f;
+        }
         scrollSpeed = -1.5f;
-        speedVariance = 1f;
         indexOfColumn = 0;
         if (MainMenu.isTwoPlayerGame == true)
         {
@@ -70,7 +80,7 @@ public class GameControl : MonoBehaviour
             }
             
         }
-        if (HighScoreManager.instance.isAHighScore(score) && settingHighScore == false && gameOver && SceneManager.GetActiveScene().name == "main")
+        if (HighScoreManager.instance.isAHighScore(score) && settingHighScore == false && gameOver && SceneManager.GetActiveScene().name == "main" && PlayerPrefs.GetInt("IsEasyMode", 0) != 1)
         {
             highScoreUI.SetActive(true);
             settingHighScore = true;
@@ -89,7 +99,7 @@ public class GameControl : MonoBehaviour
             return;
         }
         score++;
-        if (speedVariance < 2.5f)
+        if (speedVariance < 2.5f && PlayerPrefs.GetInt("IsEasyMode", 0) != 1)
         {
             speedVariance = speedVariance + .25f;
             FindObjectOfType<ColumnPool>().spawnRate = FindObjectOfType<ColumnPool>().spawnRate - .4f; 
