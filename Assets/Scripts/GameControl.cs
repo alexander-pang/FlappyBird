@@ -42,7 +42,7 @@ public class GameControl : MonoBehaviour
         }
         scrollSpeed = -1.5f;
         indexOfColumn = 0;
-        if (MainMenu.isTwoPlayerGame == true)
+        if (SceneManager.GetActiveScene().name == "2Birds")
         {
             isTwoBirdGame = true;
         }
@@ -83,7 +83,6 @@ public class GameControl : MonoBehaviour
 
         if (HighScoreManager.instance.isAHighScore(score) && settingHighScore == false && gameOver && SceneManager.GetActiveScene().name == "Main" && PlayerPrefs.GetInt("IsEasyMode", 0) != 1)
         {
-            UnityEngine.Debug.Log("Hi");
             highScoreUI.SetActive(true);
             settingHighScore = true;
         }

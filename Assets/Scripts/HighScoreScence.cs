@@ -31,4 +31,20 @@ public class HighScoreScence : MonoBehaviour
     {
         SceneManager.LoadScene("Menu");
     }
+
+    public void resetStats()
+    {
+        PlayerPrefs.SetString("HighScore1name", "Player1");
+        PlayerPrefs.SetString("HighScore2name", "Player2");
+        PlayerPrefs.SetString("HighScore3name", "Player3");
+        PlayerPrefs.SetString("HighScore4name", "Player4");
+        PlayerPrefs.SetString("HighScore5name", "Player5");
+        PlayerPrefs.SetInt("HighScore1score", 0);
+        PlayerPrefs.SetInt("HighScore2score", 0);
+        PlayerPrefs.SetInt("HighScore3score", 0);
+        PlayerPrefs.SetInt("HighScore4score", 0);
+        PlayerPrefs.SetInt("HighScore5score", 0);
+        SceneManager.LoadScene("HighScores");
+
+    }
 }
