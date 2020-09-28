@@ -8,6 +8,14 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public static bool isTwoPlayerGame;
+
+    private void Awake()
+    {
+        if (PlayerPrefs.GetInt("MusicOn", 0) == 1)
+        {
+            FindObjectOfType<AudioManager>().PlayIfNotPlaying("ThemeSong");
+        }  
+    }
     public void Play1Bird()
     {
         SceneManager.LoadScene("Main");
@@ -23,6 +31,11 @@ public class MainMenu : MonoBehaviour
     {
         Debug.Log("Quit");
         Application.Quit();
+    }
+
+    public void Settings()
+    {
+        SceneManager.LoadScene("Settings");
     }
 
     public void highScores()

@@ -49,7 +49,7 @@ public class GameControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(SceneManager.GetActiveScene().name == "Main")
+        if(SceneManager.GetActiveScene().name == "Main" && PlayerPrefs.GetInt("SoundAlertOn", 0) == 1)
         {
 
             Bird bird = FindObjectOfType<Bird>();
@@ -60,11 +60,8 @@ public class GameControl : MonoBehaviour
             float yUpper =  collider.bounds.center.y + collider.bounds.extents.y;
             float yLower = collider.bounds.center.y - collider.bounds.extents.y;
 
-            UnityEngine.Debug.Log(indexOfColumn);
-
             if (bird.transform.position.y < yUpper && bird.transform.position.y > yLower)
             {
-                UnityEngine.Debug.LogError("HI");
                 FindObjectOfType<AudioManager>().PlayIfNotPlaying("SoundAlert");
             }
             else

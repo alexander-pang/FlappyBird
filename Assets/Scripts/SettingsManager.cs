@@ -9,11 +9,13 @@ public class SettingsManager : MonoBehaviour
 {
     public GameObject easyToggle;
     public GameObject soundToggle;
+    public GameObject musicToggle;
     // Start is called before the first frame update
     void Start()
     {
         int isEasy = PlayerPrefs.GetInt("IsEasyMode", 0);
         int soundAlert = PlayerPrefs.GetInt("SoundAlertOn", 0);
+        int music = PlayerPrefs.GetInt("MusicOn", 0);
 
         if (isEasy == 1)
         {
@@ -31,6 +33,15 @@ public class SettingsManager : MonoBehaviour
         else
         {
             soundToggle.transform.Find("Text").GetComponent<TextMeshProUGUI>().text = "O";
+        }
+
+        if (music == 1)
+        {
+            musicToggle.GetComponent<Toggle>().isOn = true;
+        }
+        else
+        {
+            musicToggle.transform.Find("Text").GetComponent<TextMeshProUGUI>().text = "O";
         }
 
     }
@@ -55,7 +66,6 @@ public class SettingsManager : MonoBehaviour
         bool isOn = soundToggle.GetComponent<Toggle>().isOn;
         if (isOn)
         {
-            UnityEngine.Debug.Log("Hi");
             PlayerPrefs.SetInt("SoundAlertOn", 1);
             soundToggle.transform.Find("Text").GetComponent<TextMeshProUGUI>().text = "X";
         }
@@ -63,6 +73,26 @@ public class SettingsManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("SoundAlertOn", 0);
             soundToggle.transform.Find("Text").GetComponent<TextMeshProUGUI>().text = "O";
+        }
+    }
+
+    public void isMusicChanged()
+    {
+        
+        bool isOn = musicToggle.GetComponent<Toggle>().isOn;
+        UnityEngine.Debug.Log(isOn);
+        if (isOn)
+        {
+            PlayerPrefs.SetInt("MusicOn", 1);
+            musicToggle.transform.Find("Text").GetComponent<TextMeshProUGUI>().text = "X";
+            FindObjectOfType<AudioManager>().PlayIfNotPlaying("ThemeSong");
+        }
+        else
+        {
+            UnityEngine.Debug.Log(isOn);
+            PlayerPrefs.SetInt("MusicOn", 0);
+            musicToggle.transform.Find("Text").GetComponent<TextMeshProUGUI>().text = "O";
+            FindObjectOfType<AudioManager>().Stop("ThemeSong");
         }
     }
 
