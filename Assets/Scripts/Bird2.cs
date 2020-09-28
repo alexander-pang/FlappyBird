@@ -37,13 +37,8 @@ public class Bird2 : MonoBehaviour
         rb2d.velocity = Vector2.zero;
         isDead = true;
         anim.SetTrigger("Die");
-        if (GameControl.instance.isTwoBirdGame == false)
-        {
-            GameControl.instance.BirdDied();
-        }
-        else
-        {
-            GameControl.instance.OneBirdDied();
-        }
+
+        GameControl.instance.OneBirdDied();
+
     }
 }

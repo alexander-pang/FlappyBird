@@ -81,8 +81,6 @@ public class GameControl : MonoBehaviour
             
         }
 
-        UnityEngine.Debug.Log(HighScoreManager.instance.isAHighScore(score) +  " " + (settingHighScore == false)  + " "+ gameOver + " " + (PlayerPrefs.GetInt("IsEasyMode", 0) != 1));
-
         if (HighScoreManager.instance.isAHighScore(score) && settingHighScore == false && gameOver && SceneManager.GetActiveScene().name == "Main" && PlayerPrefs.GetInt("IsEasyMode", 0) != 1)
         {
             UnityEngine.Debug.Log("Hi");
@@ -106,7 +104,7 @@ public class GameControl : MonoBehaviour
         if (speedVariance < 3.5f && PlayerPrefs.GetInt("IsEasyMode", 0) != 1)
         {
             speedVariance = speedVariance + .25f;
-            FindObjectOfType<ColumnPool>().spawnRate = FindObjectOfType<ColumnPool>().spawnRate - .2f; 
+            FindObjectOfType<ColumnPool>().spawnRate = 4f / speedVariance; 
         }
 
         if (indexOfColumn == 4)
@@ -130,7 +128,7 @@ public class GameControl : MonoBehaviour
         if(birdsDead == 1 && speedVariance < 3.5f)
         {
             speedVariance = speedVariance + .25f;
-            FindObjectOfType<ColumnPool>().spawnRate = FindObjectOfType<ColumnPool>().spawnRate - .2f;
+            FindObjectOfType<ColumnPool>().spawnRate = 4f / speedVariance;
         }
 
         scoreTwo++;
@@ -146,7 +144,7 @@ public class GameControl : MonoBehaviour
     {
         birdsDead++;
         if (birdsDead == 2)
-        {
+        { 
             gameOverText.SetActive(true);
             gameOver = true;
         }
