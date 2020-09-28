@@ -29,10 +29,10 @@ public class GameControl : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        if (PlayerPrefs.GetInt("IsEasyMode", 0) == 1)
+        if (PlayerPrefs.GetInt("IsEasyMode", 0) == 1 && SceneManager.GetActiveScene().name == "Main")
         {
             speedVariance = .75f;
-            FindObjectOfType<ColumnPool>().spawnRate = FindObjectOfType<ColumnPool>().spawnRate + .4f;
+            FindObjectOfType<ColumnPool>().spawnRate = FindObjectOfType<ColumnPool>().spawnRate + .6f;
             FindObjectOfType<Bird>().GetComponent<Rigidbody2D>().gravityScale = .4f;
             FindObjectOfType<Bird>().upForce = 125;
         }
@@ -80,8 +80,12 @@ public class GameControl : MonoBehaviour
             }
             
         }
-        if (HighScoreManager.instance.isAHighScore(score) && settingHighScore == false && gameOver && SceneManager.GetActiveScene().name == "main" && PlayerPrefs.GetInt("IsEasyMode", 0) != 1)
+
+        UnityEngine.Debug.Log(HighScoreManager.instance.isAHighScore(score) +  " " + (settingHighScore == false)  + " "+ gameOver + " " + (PlayerPrefs.GetInt("IsEasyMode", 0) != 1));
+
+        if (HighScoreManager.instance.isAHighScore(score) && settingHighScore == false && gameOver && SceneManager.GetActiveScene().name == "Main" && PlayerPrefs.GetInt("IsEasyMode", 0) != 1)
         {
+            UnityEngine.Debug.Log("Hi");
             highScoreUI.SetActive(true);
             settingHighScore = true;
         }
@@ -99,10 +103,10 @@ public class GameControl : MonoBehaviour
             return;
         }
         score++;
-        if (speedVariance < 2.5f && PlayerPrefs.GetInt("IsEasyMode", 0) != 1)
+        if (speedVariance < 3.5f && PlayerPrefs.GetInt("IsEasyMode", 0) != 1)
         {
             speedVariance = speedVariance + .25f;
-            FindObjectOfType<ColumnPool>().spawnRate = FindObjectOfType<ColumnPool>().spawnRate - .4f; 
+            FindObjectOfType<ColumnPool>().spawnRate = FindObjectOfType<ColumnPool>().spawnRate - .2f; 
         }
 
         if (indexOfColumn == 4)
@@ -123,10 +127,10 @@ public class GameControl : MonoBehaviour
         {
             return;
         }
-        if(birdsDead == 1 && speedVariance < 2.5f)
+        if(birdsDead == 1 && speedVariance < 3.5f)
         {
             speedVariance = speedVariance + .25f;
-            FindObjectOfType<ColumnPool>().spawnRate = FindObjectOfType<ColumnPool>().spawnRate - .4f;
+            FindObjectOfType<ColumnPool>().spawnRate = FindObjectOfType<ColumnPool>().spawnRate - .2f;
         }
 
         scoreTwo++;
