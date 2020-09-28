@@ -12,11 +12,11 @@ public class ColumnPool : MonoBehaviour
     public float columnMax = 3.5f;
 
 
-    private GameObject[] columns;
+    public GameObject[] columns;
     private Vector2 objectPoolPosition = new Vector2(-15f, -25f);
     private float timeSinceLastSpawned;
     private float spawnXPosition = 10f;
-    private int currentColumn = 0;
+    public int currentColumn = 0;
 
     void Start()
     {
@@ -32,7 +32,6 @@ public class ColumnPool : MonoBehaviour
     {
         timeSinceLastSpawned += Time.deltaTime;
 
-        UnityEngine.Debug.Log(spawnRate);
         if(GameControl.instance.gameOver == false && timeSinceLastSpawned >= spawnRate)
         {
             timeSinceLastSpawned = 0;
